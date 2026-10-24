@@ -1,0 +1,4051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ResolveDesk | Customer Feedback & Complaint Management System</title>
+  <meta name="description" content="Enterprise-grade Banking Customer Feedback and Complaint Management CRM with Admin Authentication, Status Tracking, Dynamic KPIs, and LocalStorage Persistence.">
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome for professional banking & CRM icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+/* ===================================================================
+   ResolveDesk - Customer Feedback & Complaint Management System
+   Corporate CRM & Banking Grade Modern Stylesheet
+   =================================================================== */
+
+:root {
+  /* Color Palette */
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-light: #eff6ff;
+  --primary-border: #bfdbfe;
+
+  --navy-dark: #0f172a;
+  --navy-slate: #1e293b;
+  --slate-body: #334155;
+  --slate-muted: #64748b;
+  --slate-subtle: #94a3b8;
+  --border-light: #e2e8f0;
+  --border-medium: #cbd5e1;
+  --bg-page: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-subtle: #f1f5f9;
+
+  /* Status Colors */
+  /* Pending: Yellow / Amber */
+  --status-pending-bg: #fffbeb;
+  --status-pending-text: #b45309;
+  --status-pending-border: #fcd34d;
+  --status-pending-dot: #f59e0b;
+
+  /* In Progress: Blue */
+  --status-progress-bg: #eff6ff;
+  --status-progress-text: #1d4ed8;
+  --status-progress-border: #93c5fd;
+  --status-progress-dot: #3b82f6;
+
+  /* Resolved: Emerald Green */
+  --status-resolved-bg: #ecfdf5;
+  --status-resolved-text: #065f46;
+  --status-resolved-border: #a7f3d0;
+  --status-resolved-dot: #10b981;
+
+  /* Accent Colors */
+  --danger: #ef4444;
+  --danger-light: #fef2f2;
+  --warning: #f59e0b;
+  --gold: #f59e0b;
+
+  /* Geometry & Elevation */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.1), 0 4px 6px -4px rgba(15, 23, 42, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.06);
+
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-page);
+  color: var(--slate-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* Typography Helpers */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--navy-dark);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+p {
+  color: var(--slate-muted);
+}
+
+.text-primary { color: var(--primary) !important; }
+.text-info { color: #0284c7 !important; }
+.text-warning { color: var(--warning) !important; }
+.text-success { color: #059669 !important; }
+.text-right { text-align: right !important; }
+
+/* Container */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ===================================================================
+   Top Navigation
+   =================================================================== */
+.top-nav {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+}
+
+.brand-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+}
+
+.brand-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: var(--navy-dark);
+}
+
+.brand-tag {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--slate-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Role Switcher */
+.role-switcher-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.switcher-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--slate-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.role-switcher {
+  display: flex;
+  background-color: var(--bg-subtle);
+  padding: 0.25rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-light);
+}
+
+.role-btn {
+  border: none;
+  background: transparent;
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius-full);
+  font-family: inherit;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--slate-muted);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition);
+  outline: none;
+}
+
+.role-btn:hover {
+  color: var(--navy-dark);
+}
+
+.role-btn.active {
+  background-color: #ffffff;
+  color: var(--primary);
+  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.08);
+}
+
+.badge-count {
+  background-color: var(--primary);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.45rem;
+  border-radius: var(--radius-full);
+  min-width: 1.25rem;
+  text-align: center;
+}
+
+.role-btn.active .badge-count {
+  background-color: var(--primary);
+}
+
+/* ===================================================================
+   Main Content Layout
+   =================================================================== */
+.main-body {
+  flex: 1;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.view-section {
+  display: none;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.view-section.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Common Card Styling */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  padding: 1.75rem;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-light);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  color: var(--navy-dark);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.card-subtitle {
+  font-size: 0.88rem;
+  color: var(--slate-muted);
+  margin-top: 0.25rem;
+}
+
+.required-indicator {
+  font-size: 0.78rem;
+  color: var(--slate-muted);
+  font-weight: 500;
+}
+
+/* ===================================================================
+   CUSTOMER PORTAL
+   =================================================================== */
+.hero-banner {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-radius: var(--radius-lg);
+  color: #ffffff;
+  padding: 2.25rem 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hero-text {
+  max-width: 650px;
+}
+
+.hero-text h2 {
+  color: #ffffff;
+  font-size: 1.85rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.hero-text p {
+  color: #94a3b8;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.quick-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(8px);
+  padding: 0.85rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.quick-stat i {
+  font-size: 1.6rem;
+  color: #60a5fa;
+}
+
+.quick-stat strong {
+  display: block;
+  font-size: 1.15rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.quick-stat span {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Customer Tab Navigation */
+.customer-tabs {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 0.25rem;
+}
+
+.cust-tab-btn {
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--slate-muted);
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  transition: var(--transition);
+}
+
+.cust-tab-btn:hover {
+  color: var(--navy-dark);
+  background-color: var(--bg-subtle);
+}
+
+.cust-tab-btn.active {
+  color: var(--primary);
+  background-color: var(--primary-light);
+}
+
+.cust-tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -0.25rem;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--primary);
+  border-radius: var(--radius-full);
+}
+
+.cust-pane {
+  display: none;
+}
+
+.cust-pane.active {
+  display: block;
+  animation: fadeIn 0.25s ease-out;
+}
+
+.customer-content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+}
+
+/* Form Styles */
+.form-row {
+  display: grid;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-row.two-cols {
+  grid-template-columns: 1fr 1fr;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--navy-slate);
+  margin-bottom: 0.45rem;
+}
+
+.req {
+  color: var(--danger);
+  font-weight: 700;
+}
+
+.label-with-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.45rem;
+}
+
+.label-with-meta label {
+  margin-bottom: 0;
+}
+
+.char-count, .hint-text {
+  font-size: 0.78rem;
+  color: var(--slate-muted);
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 0.95rem;
+  color: var(--slate-subtle);
+  font-size: 0.95rem;
+  pointer-events: none;
+}
+
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  font-family: inherit;
+  font-size: 0.92rem;
+  padding: 0.7rem 0.95rem 0.7rem 2.6rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-medium);
+  background-color: #ffffff;
+  color: var(--navy-dark);
+  transition: var(--transition);
+  outline: none;
+}
+
+textarea {
+  padding-left: 0.95rem;
+  resize: vertical;
+  min-height: 110px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.select-wrapper select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.95rem center;
+  background-size: 1.1em;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+/* Field validation error message */
+.field-error {
+  display: none;
+  font-size: 0.76rem;
+  color: var(--danger);
+  margin-top: 0.35rem;
+  font-weight: 500;
+}
+
+.has-error input,
+.has-error select,
+.has-error textarea {
+  border-color: var(--danger);
+  background-color: #fffbfa;
+}
+
+.has-error .field-error {
+  display: block;
+}
+
+/* Rating Picker Component */
+.rating-picker-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  min-height: 44px;
+}
+
+.star-rating {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.star-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.35rem;
+  color: #d1d5db;
+  padding: 0 0.15rem;
+  transition: transform 0.15s ease, color 0.15s ease;
+  outline: none;
+}
+
+.star-btn:hover {
+  transform: scale(1.18);
+}
+
+.star-btn.active,
+.star-btn.hovered {
+  color: var(--gold);
+}
+
+.rating-label {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--slate-muted);
+}
+
+/* Button System */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.7rem 1.4rem;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+  border: 1px solid transparent;
+  outline: none;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: #ffffff;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.25);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: var(--bg-subtle);
+  color: var(--navy-slate);
+  border-color: var(--border-medium);
+}
+
+.btn-secondary:hover {
+  background-color: var(--border-light);
+  color: var(--navy-dark);
+}
+
+.btn-outline {
+  background-color: #ffffff;
+  color: var(--navy-slate);
+  border-color: var(--border-medium);
+}
+
+.btn-outline:hover {
+  background-color: var(--bg-subtle);
+  border-color: var(--slate-subtle);
+}
+
+.btn-sm {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.82rem;
+  border-radius: var(--radius-sm);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-light);
+}
+
+/* Guidance / Steps Card */
+.guidance-card {
+  background: linear-gradient(to right bottom, #f8fafc, #ffffff);
+}
+
+.guidance-card h4 {
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.steps-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+}
+
+.steps-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  flex-shrink: 0;
+  border: 1px solid var(--primary-border);
+}
+
+.steps-list li strong {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--navy-dark);
+  margin-bottom: 0.15rem;
+}
+
+.steps-list li div {
+  font-size: 0.82rem;
+  color: var(--slate-muted);
+}
+
+.steps-list code {
+  background: #e2e8f0;
+  padding: 0.1rem 0.35rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+/* ===================================================================
+   TRACK STATUS VIEW
+   =================================================================== */
+.track-search-card {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.track-search-box {
+  margin-bottom: 2rem;
+}
+
+.track-input-wrap {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.track-input-wrap input {
+  font-size: 1.05rem;
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.track-input-wrap input::placeholder {
+  text-transform: none;
+  letter-spacing: normal;
+  font-weight: 400;
+}
+
+.quick-samples {
+  margin-top: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+  color: var(--slate-muted);
+}
+
+.sample-tags {
+  display: inline-flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.sample-pill {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-full);
+  padding: 0.15rem 0.6rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--primary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.sample-pill:hover {
+  background: var(--primary-light);
+  border-color: var(--primary);
+}
+
+/* Tracking Result Card */
+.tracking-result-area {
+  border-top: 1px solid var(--border-light);
+  padding-top: 1.75rem;
+}
+
+.tracking-result-area.hidden {
+  display: none;
+}
+
+.track-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.track-ticket-header h4 {
+  font-size: 1.45rem;
+  letter-spacing: -0.01em;
+  color: var(--navy-dark);
+}
+
+.track-ticket-header .track-meta {
+  font-size: 0.82rem;
+  color: var(--slate-muted);
+  margin-top: 0.2rem;
+}
+
+/* Timeline Indicator */
+.resolution-timeline {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.resolution-timeline::before {
+  content: '';
+  position: absolute;
+  top: 17px;
+  left: 20px;
+  right: 20px;
+  height: 3px;
+  background-color: var(--border-medium);
+  z-index: 1;
+}
+
+.timeline-progress-bar {
+  position: absolute;
+  top: 17px;
+  left: 20px;
+  height: 3px;
+  background-color: var(--primary);
+  z-index: 2;
+  transition: width 0.4s ease;
+}
+
+.timeline-step {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100px;
+}
+
+.timeline-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 3px solid var(--border-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: var(--slate-muted);
+  margin-bottom: 0.5rem;
+  transition: var(--transition);
+}
+
+.timeline-step.completed .timeline-dot {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+}
+
+.timeline-step.active .timeline-dot {
+  border-color: var(--primary);
+  color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+.timeline-step.completed.resolved-step .timeline-dot {
+  background: var(--status-resolved-dot);
+  border-color: var(--status-resolved-dot);
+}
+
+.timeline-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--navy-slate);
+}
+
+.timeline-date {
+  font-size: 0.72rem;
+  color: var(--slate-muted);
+}
+
+/* Details Box within Tracking View */
+.track-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+  background: var(--bg-subtle);
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-light);
+}
+
+.track-field-label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--slate-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.track-field-val {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--navy-dark);
+}
+
+.track-narrative {
+  background: #ffffff;
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  margin-bottom: 1.5rem;
+}
+
+.track-narrative h5 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: var(--navy-dark);
+}
+
+.track-narrative p {
+  font-size: 0.9rem;
+  color: var(--slate-body);
+  line-height: 1.6;
+}
+
+/* Admin Resolution Response Callout */
+.admin-notes-callout {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-left: 5px solid #22c55e;
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.admin-notes-callout.pending-note {
+  background: #fffbeb;
+  border-color: #fde68a;
+  border-left-color: #f59e0b;
+}
+
+.admin-notes-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.admin-notes-title {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #166534;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-notes-callout.pending-note .admin-notes-title {
+  color: #92400e;
+}
+
+.admin-notes-body {
+  font-size: 0.9rem;
+  color: #1f2937;
+  line-height: 1.6;
+}
+
+/* Not Found View */
+.not-found-card {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background: var(--bg-subtle);
+  border-radius: var(--radius-md);
+}
+
+.not-found-card i {
+  font-size: 2.75rem;
+  color: var(--slate-subtle);
+  margin-bottom: 0.75rem;
+}
+
+/* ===================================================================
+   ADMIN DASHBOARD
+   =================================================================== */
+.admin-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.admin-title {
+  font-size: 1.65rem;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.admin-subtitle {
+  font-size: 0.9rem;
+  color: var(--slate-muted);
+  margin-top: 0.25rem;
+}
+
+.admin-top-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* Metrics KPI Grid */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.metric-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.45rem;
+  flex-shrink: 0;
+}
+
+.total-icon {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.pending-icon {
+  background: var(--status-pending-bg);
+  color: var(--status-pending-dot);
+}
+
+.progress-icon {
+  background: var(--status-progress-bg);
+  color: var(--status-progress-dot);
+}
+
+.resolved-icon {
+  background: var(--status-resolved-bg);
+  color: var(--status-resolved-dot);
+}
+
+.rating-icon {
+  background: #fffbeb;
+  color: #f59e0b;
+}
+
+.metric-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--slate-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.metric-value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--navy-dark);
+  line-height: 1.1;
+  margin: 0.2rem 0;
+}
+
+.metric-subtext {
+  font-size: 0.75rem;
+  color: var(--slate-muted);
+}
+
+.metric-stars {
+  font-size: 0.8rem;
+  color: var(--gold);
+}
+
+/* Admin Table Toolbar */
+.table-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.table-toolbar {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border-light);
+  background: #ffffff;
+  flex-wrap: wrap;
+}
+
+.toolbar-search {
+  position: relative;
+  flex: 1;
+  min-width: 260px;
+  max-width: 420px;
+}
+
+.toolbar-search input {
+  padding-left: 2.35rem;
+  font-size: 0.88rem;
+}
+
+.search-icon {
+  position: absolute;
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--slate-subtle);
+  font-size: 0.85rem;
+  pointer-events: none;
+}
+
+.toolbar-filters {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.filter-item label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--slate-muted);
+  white-space: nowrap;
+}
+
+.filter-item select {
+  padding: 0.45rem 2.2rem 0.45rem 0.75rem;
+  font-size: 0.84rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-subtle);
+  border-color: var(--border-medium);
+  min-width: 140px;
+}
+
+/* CRM Table */
+.table-responsive {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.crm-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.88rem;
+}
+
+.crm-table th {
+  background-color: var(--bg-subtle);
+  color: var(--slate-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.crm-table td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--slate-body);
+  vertical-align: middle;
+}
+
+.crm-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.crm-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.id-badge {
+  font-family: monospace;
+  font-weight: 700;
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--primary-border);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.customer-cell strong {
+  display: block;
+  color: var(--navy-dark);
+}
+
+.customer-cell small {
+  color: var(--slate-muted);
+  font-size: 0.76rem;
+}
+
+.category-tag {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: var(--bg-subtle);
+  color: var(--navy-slate);
+}
+
+.table-subject-cell {
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+  color: var(--navy-slate);
+}
+
+.table-rating-stars {
+  color: var(--gold);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+}
+
+/* Status Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.badge-pending {
+  background-color: var(--status-pending-bg);
+  color: var(--status-pending-text);
+  border-color: var(--status-pending-border);
+}
+
+.badge-progress {
+  background-color: var(--status-progress-bg);
+  color: var(--status-progress-text);
+  border-color: var(--status-progress-border);
+}
+
+.badge-resolved {
+  background-color: var(--status-resolved-bg);
+  color: var(--status-resolved-text);
+  border-color: var(--status-resolved-border);
+}
+
+.table-footer {
+  padding: 0.9rem 1.5rem;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  color: var(--slate-muted);
+}
+
+.data-sync-info {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--slate-muted);
+}
+
+/* Empty Table State */
+.empty-table-state {
+  text-align: center;
+  padding: 3.5rem 1rem;
+}
+
+.empty-table-state i {
+  font-size: 2.5rem;
+  color: var(--slate-subtle);
+  margin-bottom: 0.75rem;
+}
+
+.empty-table-state h4 {
+  color: var(--navy-dark);
+  font-size: 1.1rem;
+  margin-bottom: 0.35rem;
+}
+
+/* ===================================================================
+   MODALS & DIALOGS
+   =================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.modal-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-dialog {
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  max-width: 480px;
+  width: 100%;
+  padding: 2rem;
+  box-shadow: var(--shadow-xl);
+  transform: translateY(20px) scale(0.96);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-overlay.active .modal-dialog {
+  transform: translateY(0) scale(1);
+}
+
+.modal-dialog.modal-lg {
+  max-width: 720px;
+}
+
+/* Success Modal Details */
+.modal-badge-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 0 auto 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+}
+
+.modal-badge-icon.success {
+  background-color: var(--status-resolved-bg);
+  color: var(--status-resolved-dot);
+  border: 3px solid var(--status-resolved-border);
+}
+
+.modal-title {
+  text-align: center;
+  font-size: 1.4rem;
+  color: var(--navy-dark);
+  margin-bottom: 0.5rem;
+}
+
+.modal-description {
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--slate-muted);
+  margin-bottom: 1.5rem;
+}
+
+.ticket-id-box {
+  background: var(--bg-subtle);
+  border: 1px dashed var(--primary);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.ticket-label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--slate-muted);
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.ticket-value-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.ticket-id-code {
+  font-size: 1.6rem;
+  font-weight: 800;
+  font-family: monospace;
+  color: var(--primary);
+  letter-spacing: 0.05em;
+}
+
+.copy-btn {
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--navy-slate);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: var(--transition);
+}
+
+.copy-btn:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-color: var(--primary-border);
+}
+
+.modal-footer-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.85rem;
+}
+
+/* Admin Detail Modal Styles */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.modal-pre-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--slate-muted);
+  font-weight: 600;
+  display: block;
+}
+
+.modal-header .modal-title {
+  text-align: left;
+  margin-bottom: 0;
+  font-family: monospace;
+  font-size: 1.45rem;
+  color: var(--primary);
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: var(--slate-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.modal-close-btn:hover {
+  color: var(--danger);
+  background-color: var(--danger-light);
+}
+
+.detail-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-label {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  color: var(--slate-muted);
+  margin-bottom: 0.25rem;
+}
+
+.info-value {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--navy-dark);
+}
+
+.detail-divider {
+  height: 1px;
+  background-color: var(--border-light);
+  margin: 1.25rem 0;
+}
+
+.detail-subject-title {
+  font-size: 1.05rem;
+  color: var(--navy-dark);
+  margin-bottom: 0.85rem;
+}
+
+.detail-message-box {
+  background: var(--bg-subtle);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--navy-slate);
+  border: 1px solid var(--border-light);
+  white-space: pre-wrap;
+}
+
+/* Status Selector Radio Cards */
+.form-section-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--navy-dark);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.status-selector-radios {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.status-radio-option input[type="radio"] {
+  display: none;
+}
+
+.radio-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0.85rem;
+  border: 2px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+  background: #ffffff;
+}
+
+.radio-card small {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--slate-muted);
+  margin-top: 0.35rem;
+}
+
+.status-radio-option input:checked + .radio-card {
+  border-color: var(--primary);
+  background-color: var(--primary-light);
+  box-shadow: 0 0 0 1px var(--primary);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-light);
+}
+
+/* ===================================================================
+   TOAST NOTIFICATION SYSTEM
+   =================================================================== */
+.toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  pointer-events: none;
+}
+
+.toast {
+  background: #ffffff;
+  color: var(--navy-dark);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.25rem;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-light);
+  border-left: 4px solid var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  min-width: 280px;
+  max-width: 400px;
+  pointer-events: auto;
+  animation: slideToast 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.toast.toast-success {
+  border-left-color: var(--status-resolved-dot);
+}
+
+.toast.toast-warning {
+  border-left-color: var(--status-pending-dot);
+}
+
+.toast.toast-danger {
+  border-left-color: var(--danger);
+}
+
+@keyframes slideToast {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.toast-closing {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.25s ease;
+}
+
+/* ===================================================================
+   FOOTER
+   =================================================================== */
+.app-footer {
+  margin-top: auto;
+  background-color: #ffffff;
+  border-top: 1px solid var(--border-light);
+  padding: 1.5rem 0;
+  font-size: 0.82rem;
+  color: var(--slate-muted);
+}
+
+.footer-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.footer-links a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* ===================================================================
+   ADMIN AUTHENTICATION & SESSION MANAGEMENT STYLES
+   =================================================================== */
+.admin-session-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.3rem 0.75rem;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: var(--radius-full);
+}
+
+.session-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #166534;
+}
+
+.session-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.3);
+  animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+.btn-logout {
+  border: 1px solid #fecaca;
+  background: #ffffff;
+  color: #dc2626;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: var(--transition);
+}
+
+.btn-logout:hover {
+  background: #fef2f2;
+  border-color: #f87171;
+  color: #b91c1c;
+}
+
+/* Admin Auth Modal Components */
+.modal-dialog.auth-modal {
+  max-width: 440px;
+}
+
+.modal-badge-icon.auth {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  border: 3px solid var(--primary-border);
+}
+
+.demo-credentials-card {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.demo-cred-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #92400e;
+  margin-bottom: 0.35rem;
+}
+
+.demo-cred-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #78350f;
+}
+
+.demo-cred-row code {
+  background: #ffffff;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  border: 1px solid #fcd34d;
+  font-family: monospace;
+  font-weight: 700;
+  color: #b45309;
+}
+
+.btn-quick-fill {
+  background: #ffffff;
+  border: 1px solid #fcd34d;
+  color: #b45309;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: var(--transition);
+}
+
+.btn-quick-fill:hover {
+  background: #fef3c7;
+  border-color: #f59e0b;
+}
+
+.login-error-alert {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: var(--radius-md);
+  padding: 0.65rem 0.85rem;
+  color: #dc2626;
+  font-size: 0.82rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  animation: slideToast 0.25s ease forwards;
+}
+
+.login-error-alert.hidden {
+  display: none;
+}
+
+.pwd-toggle-btn {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--slate-muted);
+  cursor: pointer;
+  padding: 0.35rem;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pwd-toggle-btn:hover {
+  color: var(--navy-dark);
+}
+
+.auth-actions {
+  margin-top: 1.25rem;
+}
+
+/* ===================================================================
+   TICKET DELETION & DANGER MODAL
+   =================================================================== */
+.table-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.btn-danger-outline {
+  background: #ffffff;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 0.35rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.btn-danger-outline:hover {
+  background: #fef2f2;
+  border-color: #ef4444;
+  color: #b91c1c;
+}
+
+.btn-danger {
+  background: #dc2626;
+  border: 1px solid #dc2626;
+  color: #ffffff;
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition);
+}
+
+.btn-danger:hover {
+  background: #b91c1c;
+  border-color: #b91c1c;
+  box-shadow: 0 2px 4px rgba(220, 38, 38, 0.25);
+}
+
+.modal-dialog.modal-danger {
+  border-top: 4px solid var(--danger);
+}
+
+.modal-badge-icon.danger {
+  background-color: #fef2f2;
+  color: #dc2626;
+  border: 3px solid #fecaca;
+}
+
+/* Shake Animation for Auth Errors */
+.shake {
+  animation: modalShake 0.4s ease-in-out;
+}
+
+@keyframes modalShake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+
+/* ===================================================================
+   RESPONSIVE DESIGN (Media Queries)
+   =================================================================== */
+@media (max-width: 992px) {
+  .detail-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .status-selector-radios {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .role-switcher-container {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .hero-banner {
+    padding: 1.5rem;
+  }
+
+  .form-row.two-cols {
+    grid-template-columns: 1fr;
+  }
+
+  .resolution-timeline {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .resolution-timeline::before,
+  .timeline-progress-bar {
+    display: none;
+  }
+
+  .timeline-step {
+    flex-direction: row;
+    width: 100%;
+    text-align: left;
+    gap: 0.85rem;
+  }
+
+  .timeline-dot {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .track-input-wrap {
+    flex-direction: column;
+  }
+
+  .detail-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .toolbar-filters {
+    width: 100%;
+  }
+
+  .filter-item {
+    flex: 1;
+    min-width: 140px;
+  }
+
+  .filter-item select {
+    width: 100%;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <!-- App Container -->
+  <div id="app" class="app-container">
+    
+    <!-- Top Navigation Header -->
+    <header class="top-nav">
+      <div class="nav-content">
+        <div class="brand">
+          <div class="brand-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div class="brand-info">
+            <h1 class="brand-title">ResolveDesk</h1>
+            <span class="brand-tag">Enterprise Feedback & Resolution Portal</span>
+          </div>
+        </div>
+
+        <!-- Role Switcher & Admin Session Status -->
+        <div class="role-switcher-container">
+          <!-- Active Admin Session Indicator & Quick Logout -->
+          <div id="admin-session-indicator" class="admin-session-indicator" style="display: none;">
+            <span class="session-pill">
+              <span class="session-dot"></span>
+              <i class="fa-solid fa-user-shield"></i> Admin Active
+            </span>
+            <button type="button" class="btn-logout" onclick="app.adminLogout()" title="Sign out of Admin Dashboard">
+              <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </button>
+          </div>
+
+          <span class="switcher-label"><i class="fa-solid fa-users-gear"></i> Portal Mode:</span>
+          <div class="role-switcher" role="tablist" aria-label="Portal Mode Switcher">
+            <button 
+              id="role-customer-btn" 
+              class="role-btn active" 
+              role="tab" 
+              aria-selected="true" 
+              onclick="app.switchRole('customer')">
+              <i class="fa-solid fa-user"></i> Customer Portal
+            </button>
+            <button 
+              id="role-admin-btn" 
+              class="role-btn" 
+              role="tab" 
+              aria-selected="false" 
+              onclick="app.switchRole('admin')"
+              title="Admin Dashboard (Authentication Required)">
+              <i class="fa-solid fa-gauge-high"></i> Admin Dashboard
+              <span id="admin-badge-count" class="badge-count">0</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-body">
+
+      <!-- ============================================== -->
+      <!-- VIEW 1: CUSTOMER PORTAL -->
+      <!-- ============================================== -->
+      <section id="customer-view" class="view-section active" aria-labelledby="customer-portal-title">
+        
+        <!-- Portal Header Banner -->
+        <div class="hero-banner">
+          <div class="hero-text">
+            <h2>We Value Your Experience</h2>
+            <p>Submit your grievances or feedback, receive an instant tracking ID, and track real-time resolution from our support leadership.</p>
+          </div>
+          <div class="hero-stats">
+            <div class="quick-stat">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+              <div>
+                <strong>24-48 Hrs</strong>
+                <span>Average Resolution</span>
+              </div>
+            </div>
+            <div class="quick-stat">
+              <i class="fa-solid fa-circle-check"></i>
+              <div>
+                <strong>98.4%</strong>
+                <span>Resolution Rate</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Customer Sub-Navigation Tabs -->
+        <div class="customer-tabs">
+          <button id="tab-submit-btn" class="cust-tab-btn active" onclick="app.switchCustomerTab('submit')">
+            <i class="fa-solid fa-pen-to-square"></i> Submit Complaint / Feedback
+          </button>
+          <button id="tab-track-btn" class="cust-tab-btn" onclick="app.switchCustomerTab('track')">
+            <i class="fa-solid fa-magnifying-glass"></i> Track Ticket Status
+          </button>
+        </div>
+
+        <div class="customer-content-grid">
+          
+          <!-- TAB 1: SUBMISSION FORM -->
+          <div id="customer-submit-pane" class="cust-pane active">
+            <div class="card form-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title"><i class="fa-solid fa-file-signature text-primary"></i> Complaint & Feedback Form</h3>
+                  <p class="card-subtitle">Fill in the details below. Our customer advocacy team will review and take prompt action.</p>
+                </div>
+                <span class="required-indicator">* Required fields</span>
+              </div>
+
+              <form id="complaint-form" onsubmit="app.handleComplaintSubmit(event)" novalidate>
+                <div class="form-row two-cols">
+                  <div class="form-group">
+                    <label for="cust-fullname">Full Name <span class="req">*</span></label>
+                    <div class="input-wrapper">
+                      <i class="fa-solid fa-user input-icon"></i>
+                      <input 
+                        type="text" 
+                        id="cust-fullname" 
+                        name="fullname" 
+                        placeholder="e.g., Jane Doe" 
+                        required>
+                    </div>
+                    <span class="field-error" id="err-fullname"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="cust-email">Email Address <span class="req">*</span></label>
+                    <div class="input-wrapper">
+                      <i class="fa-solid fa-envelope input-icon"></i>
+                      <input 
+                        type="email" 
+                        id="cust-email" 
+                        name="email" 
+                        placeholder="e.g., jane.doe@example.com" 
+                        required>
+                    </div>
+                    <span class="field-error" id="err-email"></span>
+                  </div>
+                </div>
+
+                <div class="form-row two-cols">
+                  <div class="form-group">
+                    <label for="cust-category">Category <span class="req">*</span></label>
+                    <div class="input-wrapper select-wrapper">
+                      <i class="fa-solid fa-layer-group input-icon"></i>
+                      <select id="cust-category" name="category" required>
+                        <option value="" disabled selected>Select category...</option>
+                        <option value="Service">Customer Service & Support</option>
+                        <option value="Billing">Billing & Financial Charges</option>
+                        <option value="Product">Product Quality & Delivery</option>
+                        <option value="Technical Issue">Technical & Digital Systems</option>
+                        <option value="Privacy & Security">Privacy & Account Security</option>
+                        <option value="General Feedback">General Compliment / Suggestion</option>
+                      </select>
+                    </div>
+                    <span class="field-error" id="err-category"></span>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Overall Experience Rating <span class="req">*</span></label>
+                    <div class="rating-picker-wrapper">
+                      <div class="star-rating" id="star-rating-container" role="radiogroup" aria-label="Rating from 1 to 5 stars">
+                        <button type="button" class="star-btn" data-value="1" title="1 Star - Very Poor" onclick="app.setRating(1)"><i class="fa-solid fa-star"></i></button>
+                        <button type="button" class="star-btn" data-value="2" title="2 Stars - Poor" onclick="app.setRating(2)"><i class="fa-solid fa-star"></i></button>
+                        <button type="button" class="star-btn" data-value="3" title="3 Stars - Average" onclick="app.setRating(3)"><i class="fa-solid fa-star"></i></button>
+                        <button type="button" class="star-btn" data-value="4" title="4 Stars - Good" onclick="app.setRating(4)"><i class="fa-solid fa-star"></i></button>
+                        <button type="button" class="star-btn" data-value="5" title="5 Stars - Excellent" onclick="app.setRating(5)"><i class="fa-solid fa-star"></i></button>
+                      </div>
+                      <span id="rating-label" class="rating-label">Select a rating</span>
+                      <input type="hidden" id="cust-rating" name="rating" value="">
+                    </div>
+                    <span class="field-error" id="err-rating"></span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="cust-subject">Subject / Summary <span class="req">*</span></label>
+                  <div class="input-wrapper">
+                    <i class="fa-solid fa-heading input-icon"></i>
+                    <input 
+                      type="text" 
+                      id="cust-subject" 
+                      name="subject" 
+                      placeholder="Brief headline summarizing your issue or feedback" 
+                      required>
+                  </div>
+                  <span class="field-error" id="err-subject"></span>
+                </div>
+
+                <div class="form-group">
+                  <div class="label-with-meta">
+                    <label for="cust-details">Complaint / Feedback Details <span class="req">*</span></label>
+                    <span class="char-count" id="char-counter">0 / 1000 characters</span>
+                  </div>
+                  <textarea 
+                    id="cust-details" 
+                    name="details" 
+                    rows="5" 
+                    placeholder="Provide specific details including transaction dates, account references, or staff names to expedite resolution..." 
+                    maxlength="1000"
+                    oninput="app.updateCharCount(this)"
+                    required></textarea>
+                  <span class="field-error" id="err-details"></span>
+                </div>
+
+                <div class="form-actions">
+                  <button type="button" class="btn btn-secondary" onclick="app.resetForm()">
+                    <i class="fa-solid fa-arrow-rotate-left"></i> Clear Form
+                  </button>
+                  <button type="submit" class="btn btn-primary" id="submit-btn">
+                    <i class="fa-solid fa-paper-plane"></i> Submit Ticket
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <!-- Helpful Guide Card -->
+            <div class="card guidance-card">
+              <h4><i class="fa-solid fa-circle-info text-info"></i> What Happens Next?</h4>
+              <ul class="steps-list">
+                <li>
+                  <span class="step-num">1</span>
+                  <div>
+                    <strong>Instant Unique ID:</strong> You'll receive a distinct tracking number (e.g., <code>CMP-10492</code>).
+                  </div>
+                </li>
+                <li>
+                  <span class="step-num">2</span>
+                  <div>
+                    <strong>Triage & Review:</strong> Our administrative team assesses severity and tags an owner within 4 hours.
+                  </div>
+                </li>
+                <li>
+                  <span class="step-num">3</span>
+                  <div>
+                    <strong>Resolution & Notes:</strong> Track status updates and admin notes anytime using the tracking tab.
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- TAB 2: TRACK STATUS PANE -->
+          <div id="customer-track-pane" class="cust-pane">
+            <div class="card track-search-card">
+              <div class="card-header">
+                <div>
+                  <h3 class="card-title"><i class="fa-solid fa-magnifying-glass text-primary"></i> Track Complaint Status</h3>
+                  <p class="card-subtitle">Enter your Unique Complaint ID below to check live progress, handler updates, and resolution notes.</p>
+                </div>
+              </div>
+
+              <div class="track-search-box">
+                <div class="input-wrapper track-input-wrap">
+                  <i class="fa-solid fa-ticket input-icon"></i>
+                  <input 
+                    type="text" 
+                    id="track-search-input" 
+                    placeholder="Enter Complaint ID (e.g. CMP-10492)"
+                    onkeypress="if(event.key === 'Enter') app.trackComplaint()">
+                  <button type="button" class="btn btn-primary" onclick="app.trackComplaint()">
+                    <i class="fa-solid fa-arrow-right"></i> Check Status
+                  </button>
+                </div>
+                <div class="quick-samples">
+                  <span>Quick demo searches:</span>
+                  <div id="quick-sample-tags" class="sample-tags">
+                    <!-- Populated dynamically with active IDs -->
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tracking Results Container -->
+              <div id="tracking-result-area" class="tracking-result-area hidden">
+                <!-- Dynamically rendered -->
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- VIEW 2: ADMIN DASHBOARD -->
+      <!-- ============================================== -->
+      <section id="admin-view" class="view-section" aria-labelledby="admin-dashboard-title">
+        
+        <div class="admin-header-row">
+          <div>
+            <h2 class="admin-title"><i class="fa-solid fa-chart-line text-primary"></i> Complaint Operations Dashboard</h2>
+            <p class="admin-subtitle">Monitor ticket throughput, audit customer sentiment, and update resolution lifecycle states.</p>
+          </div>
+          <div class="admin-top-actions">
+            <button class="btn btn-outline" onclick="app.exportToJSON()" title="Download JSON formatted records">
+              <i class="fa-solid fa-file-code"></i> Export JSON
+            </button>
+            <button class="btn btn-outline" onclick="app.exportToCSV()" title="Download CSV spreadsheet">
+              <i class="fa-solid fa-file-csv"></i> Export CSV
+            </button>
+            <button class="btn btn-outline" onclick="app.resetSampleDataPrompt()" title="Reset to default sample complaints">
+              <i class="fa-solid fa-arrows-rotate"></i> Reset Demo Data
+            </button>
+          </div>
+        </div>
+
+        <!-- Metric KPI Cards -->
+        <div class="metrics-grid">
+          <!-- Total -->
+          <div class="metric-card">
+            <div class="metric-icon total-icon">
+              <i class="fa-solid fa-inbox"></i>
+            </div>
+            <div class="metric-body">
+              <span class="metric-label">Total Complaints</span>
+              <h3 class="metric-value" id="kpi-total">0</h3>
+              <span class="metric-subtext">All time submissions</span>
+            </div>
+          </div>
+
+          <!-- Pending -->
+          <div class="metric-card metric-pending">
+            <div class="metric-icon pending-icon">
+              <i class="fa-solid fa-hourglass-start"></i>
+            </div>
+            <div class="metric-body">
+              <span class="metric-label">Pending Action</span>
+              <h3 class="metric-value" id="kpi-pending">0</h3>
+              <span class="metric-subtext text-warning">Requires initial triage</span>
+            </div>
+          </div>
+
+          <!-- In Progress -->
+          <div class="metric-card metric-progress">
+            <div class="metric-icon progress-icon">
+              <i class="fa-solid fa-gears"></i>
+            </div>
+            <div class="metric-body">
+              <span class="metric-label">In Progress</span>
+              <h3 class="metric-value" id="kpi-progress">0</h3>
+              <span class="metric-subtext text-info">Being investigated</span>
+            </div>
+          </div>
+
+          <!-- Resolved -->
+          <div class="metric-card metric-resolved">
+            <div class="metric-icon resolved-icon">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div class="metric-body">
+              <span class="metric-label">Resolved</span>
+              <h3 class="metric-value" id="kpi-resolved">0</h3>
+              <span class="metric-subtext text-success">Closed satisfactorily</span>
+            </div>
+          </div>
+
+          <!-- Rating -->
+          <div class="metric-card metric-rating">
+            <div class="metric-icon rating-icon">
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <div class="metric-body">
+              <span class="metric-label">Avg. Satisfaction</span>
+              <h3 class="metric-value" id="kpi-rating">0.0 <small>/ 5</small></h3>
+              <div class="metric-stars" id="kpi-stars">
+                <!-- Stars rendered here -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Management Table & Filter Card -->
+        <div class="card table-card">
+          <div class="table-toolbar">
+            <div class="toolbar-search">
+              <i class="fa-solid fa-magnifying-glass search-icon"></i>
+              <input 
+                type="text" 
+                id="admin-search-input" 
+                placeholder="Search by ID, Customer Name, Email, or Subject..." 
+                oninput="app.filterComplaints()">
+            </div>
+
+            <div class="toolbar-filters">
+              <!-- Status Filter -->
+              <div class="filter-item">
+                <label for="admin-filter-status"><i class="fa-solid fa-filter"></i> Status:</label>
+                <select id="admin-filter-status" onchange="app.filterComplaints()">
+                  <option value="All">All Statuses</option>
+                  <option value="Pending">Pending</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Resolved">Resolved</option>
+                </select>
+              </div>
+
+              <!-- Category Filter -->
+              <div class="filter-item">
+                <label for="admin-filter-category"><i class="fa-solid fa-tag"></i> Category:</label>
+                <select id="admin-filter-category" onchange="app.filterComplaints()">
+                  <option value="All">All Categories</option>
+                  <option value="Service">Service</option>
+                  <option value="Billing">Billing</option>
+                  <option value="Product">Product</option>
+                  <option value="Technical Issue">Technical Issue</option>
+                  <option value="Privacy & Security">Privacy & Security</option>
+                  <option value="General Feedback">General Feedback</option>
+                </select>
+              </div>
+
+              <!-- Sort Order -->
+              <div class="filter-item">
+                <label for="admin-sort-by"><i class="fa-solid fa-arrow-down-short-wide"></i> Sort:</label>
+                <select id="admin-sort-by" onchange="app.filterComplaints()">
+                  <option value="newest">Newest First</option>
+                  <option value="oldest">Oldest First</option>
+                  <option value="rating-high">Rating (High to Low)</option>
+                  <option value="rating-low">Rating (Low to High)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Table Container -->
+          <div class="table-responsive">
+            <table class="crm-table">
+              <thead>
+                <tr>
+                  <th style="width: 130px;">ID</th>
+                  <th style="width: 170px;">Customer</th>
+                  <th style="width: 140px;">Category</th>
+                  <th>Subject</th>
+                  <th style="width: 120px;">Submitted</th>
+                  <th style="width: 100px;">Rating</th>
+                  <th style="width: 130px;">Status</th>
+                  <th style="width: 140px;" class="text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-table-body">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Table Footer / Count -->
+          <div class="table-footer">
+            <span id="table-results-count">Showing 0 complaints</span>
+            <span class="data-sync-info"><i class="fa-solid fa-cloud"></i> Synced with browser LocalStorage</span>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-content">
+        <p>© 2026 <strong>ResolveDesk</strong> Enterprise Customer Care System. Built with clean HTML5, CSS3 & Vanilla JavaScript.</p>
+        <div class="footer-links">
+          <span><i class="fa-solid fa-database"></i> Client-Side LocalStorage Engine</span>
+          <span>•</span>
+          <a href="javascript:void(0)" onclick="app.quickSeedNotification()">Storage Info</a>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL 1: SUBMISSION SUCCESS CONFIRMATION -->
+  <!-- ============================================== -->
+  <div id="success-modal" class="modal-overlay" onclick="app.closeModalOutside(event, 'success-modal')">
+    <div class="modal-dialog">
+      <div class="modal-badge-icon success">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <h3 class="modal-title">Ticket Successfully Created!</h3>
+      <p class="modal-description">Your complaint has been logged into the system. Please save your reference ID to monitor progress.</p>
+      
+      <div class="ticket-id-box">
+        <span class="ticket-label">Your Unique Complaint ID</span>
+        <div class="ticket-value-row">
+          <span id="modal-ticket-id" class="ticket-id-code">CMP-00000</span>
+          <button class="copy-btn" id="modal-copy-btn" onclick="app.copyToClipboard('#modal-ticket-id', this)">
+            <i class="fa-regular fa-copy"></i> Copy
+          </button>
+        </div>
+      </div>
+
+      <div class="modal-footer-actions">
+        <button class="btn btn-outline" onclick="app.closeModal('success-modal')">
+          Close
+        </button>
+        <button class="btn btn-primary" onclick="app.directToTrackModal()">
+          <i class="fa-solid fa-magnifying-glass"></i> Track Status Now
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL 2: ADMIN COMPLAINT DETAIL & STATUS UPDATE -->
+  <!-- ============================================== -->
+  <div id="admin-detail-modal" class="modal-overlay" onclick="app.closeModalOutside(event, 'admin-detail-modal')">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <span class="modal-pre-title">Complaint Inspection & Resolution</span>
+          <h3 class="modal-title" id="admin-modal-id">CMP-XXXXX</h3>
+        </div>
+        <button class="modal-close-btn" onclick="app.closeModal('admin-detail-modal')" aria-label="Close modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Customer Info Summary -->
+        <div class="detail-info-grid">
+          <div class="info-block">
+            <span class="info-label">Customer Name</span>
+            <span class="info-value" id="admin-modal-name">-</span>
+          </div>
+          <div class="info-block">
+            <span class="info-label">Email Address</span>
+            <span class="info-value" id="admin-modal-email">-</span>
+          </div>
+          <div class="info-block">
+            <span class="info-label">Category</span>
+            <span class="info-value" id="admin-modal-category">-</span>
+          </div>
+          <div class="info-block">
+            <span class="info-label">Date Submitted</span>
+            <span class="info-value" id="admin-modal-date">-</span>
+          </div>
+          <div class="info-block">
+            <span class="info-label">Customer Rating</span>
+            <div class="info-value stars-wrap" id="admin-modal-rating">-</div>
+          </div>
+          <div class="info-block">
+            <span class="info-label">Current Status</span>
+            <div id="admin-modal-current-badge">-</div>
+          </div>
+        </div>
+
+        <div class="detail-divider"></div>
+
+        <!-- Subject & Full Details -->
+        <div class="detail-section">
+          <span class="info-label">Subject Headline</span>
+          <h4 class="detail-subject-title" id="admin-modal-subject">-</h4>
+          <span class="info-label">Customer Statement</span>
+          <div class="detail-message-box" id="admin-modal-details">-</div>
+        </div>
+
+        <div class="detail-divider"></div>
+
+        <!-- Action / Resolution Form -->
+        <form id="admin-update-form" onsubmit="app.handleAdminUpdate(event)">
+          <input type="hidden" id="admin-edit-id" value="">
+          
+          <div class="form-group">
+            <label class="form-section-title"><i class="fa-solid fa-tag"></i> Update Ticket Status <span class="req">*</span></label>
+            <div class="status-selector-radios">
+              <label class="status-radio-option pending">
+                <input type="radio" name="admin-status" value="Pending" id="status-rad-pending">
+                <span class="radio-card">
+                  <span class="badge badge-pending"><i class="fa-solid fa-clock"></i> Pending</span>
+                  <small>Awaiting review or triage</small>
+                </span>
+              </label>
+
+              <label class="status-radio-option progress">
+                <input type="radio" name="admin-status" value="In Progress" id="status-rad-progress">
+                <span class="radio-card">
+                  <span class="badge badge-progress"><i class="fa-solid fa-arrows-rotate"></i> In Progress</span>
+                  <small>Investigation under active work</small>
+                </span>
+              </label>
+
+              <label class="status-radio-option resolved">
+                <input type="radio" name="admin-status" value="Resolved" id="status-rad-resolved">
+                <span class="radio-card">
+                  <span class="badge badge-resolved"><i class="fa-solid fa-circle-check"></i> Resolved</span>
+                  <small>Issue closed & customer served</small>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="label-with-meta">
+              <label for="admin-resolution-note"><i class="fa-solid fa-message"></i> Official Admin Resolution Note</label>
+              <span class="hint-text">Visible to customer when they track status</span>
+            </div>
+            <textarea 
+              id="admin-resolution-note" 
+              rows="4" 
+              placeholder="Provide a detailed explanation of steps taken, refund IDs, support findings, or next actions for the customer..."></textarea>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" onclick="app.closeModal('admin-detail-modal')">
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class="fa-solid fa-floppy-disk"></i> Save & Apply Changes
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL 3: ADMIN AUTHENTICATION MODAL -->
+  <!-- ============================================== -->
+  <div id="admin-login-modal" class="modal-overlay" onclick="app.closeModalOutside(event, 'admin-login-modal')">
+    <div class="modal-dialog auth-modal">
+      <div class="modal-badge-icon auth">
+        <i class="fa-solid fa-shield-halved"></i>
+      </div>
+      <h3 class="modal-title">Admin Portal Authentication</h3>
+      <p class="modal-description">Enter your administrator credentials to access the internal complaint CRM dashboard.</p>
+      
+      <div class="demo-credentials-card">
+        <div class="demo-cred-header">
+          <i class="fa-solid fa-key"></i>
+          <span>Pre-Configured Demo Credentials</span>
+        </div>
+        <div class="demo-cred-row">
+          <span><code>admin</code> / <code>admin123</code></span>
+          <button type="button" class="btn-quick-fill" onclick="app.quickFillCredentials()">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-fill
+          </button>
+        </div>
+      </div>
+
+      <form id="admin-login-form" onsubmit="app.handleAdminLogin(event)" novalidate>
+        <div id="login-error-alert" class="login-error-alert hidden">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          <span id="login-error-text">Invalid username or password. Please use <code>admin</code> / <code>admin123</code>.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="admin-username">Username <span class="req">*</span></label>
+          <div class="input-wrapper">
+            <i class="fa-solid fa-user-shield input-icon"></i>
+            <input 
+              type="text" 
+              id="admin-username" 
+              name="username" 
+              placeholder="e.g., admin" 
+              autocomplete="username" 
+              required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="admin-password">Password <span class="req">*</span></label>
+          <div class="input-wrapper" style="position: relative;">
+            <i class="fa-solid fa-lock input-icon"></i>
+            <input 
+              type="password" 
+              id="admin-password" 
+              name="password" 
+              placeholder="Enter password" 
+              autocomplete="current-password" 
+              required>
+            <button type="button" class="pwd-toggle-btn" onclick="app.togglePasswordVisibility('admin-password', this)" title="Show/Hide Password">
+              <i class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="modal-footer-actions auth-actions">
+          <button type="button" class="btn btn-outline" onclick="app.closeModal('admin-login-modal')">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-primary" id="admin-login-submit-btn">
+            <i class="fa-solid fa-arrow-right-to-bracket"></i> Authenticate & Enter
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL 4: DELETE TICKET CONFIRMATION -->
+  <!-- ============================================== -->
+  <div id="delete-confirm-modal" class="modal-overlay" onclick="app.closeModalOutside(event, 'delete-confirm-modal')">
+    <div class="modal-dialog modal-danger">
+      <div class="modal-badge-icon danger">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+      </div>
+      <h3 class="modal-title">Delete Complaint Ticket</h3>
+      <p class="modal-description">
+        Are you sure you want to permanently delete ticket <strong id="delete-target-id" class="text-primary">CMP-XXXXX</strong>? This will remove all associated notes, ratings, and customer statements from LocalStorage.
+      </p>
+      
+      <div class="modal-footer-actions">
+        <button type="button" class="btn btn-outline" onclick="app.closeModal('delete-confirm-modal')">
+          Cancel
+        </button>
+        <button type="button" class="btn btn-danger" onclick="app.executeDeleteTicket()">
+          <i class="fa-solid fa-trash-can"></i> Confirm Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Application Logic (Embedded for complete self-contained single-file portability) -->
+  <script>
+/**
+ * ResolveDesk - Customer Feedback & Complaint Management System
+ * Core Application Logic (Vanilla JavaScript + LocalStorage)
+ * Modern Banking CRM Architecture with Admin Authentication & Session Management
+ */
+
+(function () {
+  'use strict';
+
+  // Constants & Storage Keys
+  const STORAGE_KEY = 'resolveDesk_complaints_v1';
+  const ADMIN_SESSION_KEY = 'resolveDesk_admin_session_v1';
+  const ADMIN_CREDENTIALS = {
+    username: 'admin',
+    password: 'admin123'
+  };
+
+  // Initial realistic sample data
+  const SAMPLE_COMPLAINTS = [
+    {
+      id: 'CMP-10492',
+      fullName: 'Jonathan Hayes',
+      email: 'j.hayes@example.com',
+      category: 'Billing',
+      subject: 'Double charge on debit card transaction at grocery store',
+      details: 'On October 22nd, I attempted to purchase groceries totaling $84.20. The POS terminal initially gave a communication timeout, and upon trying again, my checking account was debited twice ($84.20 x 2). Merchant statement shows one reversal pending, but no refund has posted.',
+      rating: 2,
+      status: 'In Progress',
+      adminNote: 'Merchant processing dispute initiated under reference #DISP-8921. Contacted acquirer network to expedite automated clearing. Credit adjustment expected within 24 hours.',
+      createdAt: new Date(Date.now() - 48 * 3600 * 1000).toISOString(),
+      updatedAt: new Date(Date.now() - 20 * 3600 * 1000).toISOString()
+    },
+    {
+      id: 'CMP-10493',
+      fullName: 'Sarah Jenkins',
+      email: 'sarah.jenkins@businesscorp.org',
+      category: 'Service',
+      subject: 'Delayed international wire transfer clearance to supplier',
+      details: 'Initiated an urgent commercial wire transfer to our supplier in Frankfurt on Monday. The funds were deducted immediately, but our supplier has not received the SWIFT confirmation code after 4 business days.',
+      rating: 4,
+      status: 'Resolved',
+      adminNote: 'International treasury desk identified intermediary bank compliance verification hold. SWIFT MT103 confirmation copy transmitted to customer. Funds credited successfully on Oct 23rd.',
+      createdAt: new Date(Date.now() - 96 * 3600 * 1000).toISOString(),
+      updatedAt: new Date(Date.now() - 12 * 3600 * 1000).toISOString()
+    },
+    {
+      id: 'CMP-10494',
+      fullName: 'Michael Chen',
+      email: 'mchen.tech@gmail.com',
+      category: 'Technical Issue',
+      subject: 'Biometric FaceID authentication failing repeatedly on mobile app v4.2',
+      details: 'After updating the iOS banking mobile app to version 4.2.0 yesterday, FaceID prompt crashes immediately upon launch on iPhone 15 Pro. Forced to re-enter Master Password every single session.',
+      rating: 1,
+      status: 'Pending',
+      adminNote: '',
+      createdAt: new Date(Date.now() - 4 * 3600 * 1000).toISOString(),
+      updatedAt: new Date(Date.now() - 4 * 3600 * 1000).toISOString()
+    },
+    {
+      id: 'CMP-10495',
+      fullName: 'Emily Rodriguez',
+      email: 'emily.rodriguez@outlook.com',
+      category: 'Product',
+      subject: 'Commendation and feedback for new automated recurring savings vault',
+      details: 'I love the new recurring spare-change round-up feature! It has helped me save effortlessly. My only suggestion is allowing custom sub-vault goals for travel and emergency funds.',
+      rating: 5,
+      status: 'Resolved',
+      adminNote: 'Thanked customer for stellar feedback. Feature suggestion for multi-vault goal naming has been forwarded to the Mobile Product Roadmap queue (Feature Ref: PRD-304).',
+      createdAt: new Date(Date.now() - 120 * 3600 * 1000).toISOString(),
+      updatedAt: new Date(Date.now() - 72 * 3600 * 1000).toISOString()
+    }
+  ];
+
+  // Rating descriptor mapping
+  const RATING_DESCRIPTIONS = {
+    1: '1 - Very Poor',
+    2: '2 - Poor',
+    3: '3 - Average',
+    4: '4 - Good',
+    5: '5 - Excellent'
+  };
+
+  // State object
+  const state = {
+    currentRole: 'customer', // 'customer' | 'admin'
+    currentCustomerTab: 'submit', // 'submit' | 'track'
+    selectedRating: 0,
+    complaints: [],
+    lastSubmittedId: null,
+    pendingDeleteId: null
+  };
+
+  /**
+   * Application Controller & Public Interface
+   */
+  window.app = {
+    // -----------------------------------------------------------------
+    // Initialization
+    // -----------------------------------------------------------------
+    init() {
+      this.loadStorage();
+      this.setupEventListeners();
+      this.updateAdminAuthUI();
+      this.renderQuickSampleTags();
+      this.updateAdminKPIs();
+      this.filterComplaints();
+    },
+
+    // -----------------------------------------------------------------
+    // Admin Authentication & Session Management
+    // -----------------------------------------------------------------
+    isAdminAuthenticated() {
+      return localStorage.getItem(ADMIN_SESSION_KEY) === 'true';
+    },
+
+    updateAdminAuthUI() {
+      const isAuth = this.isAdminAuthenticated();
+      const indicator = document.getElementById('admin-session-indicator');
+      const adminRoleBtn = document.getElementById('role-admin-btn');
+
+      if (indicator) {
+        indicator.style.display = isAuth ? 'inline-flex' : 'none';
+      }
+
+      if (adminRoleBtn) {
+        if (isAuth) {
+          adminRoleBtn.setAttribute('title', 'Admin Dashboard (Active Session)');
+        } else {
+          adminRoleBtn.setAttribute('title', 'Admin Dashboard (Authentication Required)');
+        }
+      }
+    },
+
+    openAdminLoginModal() {
+      const errorAlert = document.getElementById('login-error-alert');
+      if (errorAlert) errorAlert.classList.add('hidden');
+
+      const usernameInput = document.getElementById('admin-username');
+      const passwordInput = document.getElementById('admin-password');
+
+      if (usernameInput) usernameInput.value = '';
+      if (passwordInput) passwordInput.value = '';
+
+      this.openModal('admin-login-modal');
+
+      setTimeout(() => {
+        if (usernameInput) usernameInput.focus();
+      }, 150);
+    },
+
+    quickFillCredentials() {
+      const usernameInput = document.getElementById('admin-username');
+      const passwordInput = document.getElementById('admin-password');
+      const errorAlert = document.getElementById('login-error-alert');
+
+      if (usernameInput) usernameInput.value = ADMIN_CREDENTIALS.username;
+      if (passwordInput) passwordInput.value = ADMIN_CREDENTIALS.password;
+      if (errorAlert) errorAlert.classList.add('hidden');
+
+      this.showToast('Demo credentials auto-filled (admin / admin123)', 'info');
+    },
+
+    togglePasswordVisibility(inputId, btn) {
+      const input = document.getElementById(inputId);
+      if (!input) return;
+
+      if (input.type === 'password') {
+        input.type = 'text';
+        btn.innerHTML = '<i class="fa-regular fa-eye-slash"></i>';
+      } else {
+        input.type = 'password';
+        btn.innerHTML = '<i class="fa-regular fa-eye"></i>';
+      }
+    },
+
+    handleAdminLogin(e) {
+      e.preventDefault();
+
+      const usernameInput = document.getElementById('admin-username');
+      const passwordInput = document.getElementById('admin-password');
+      const errorAlert = document.getElementById('login-error-alert');
+      const modalDialog = document.querySelector('#admin-login-modal .modal-dialog');
+
+      const username = usernameInput ? usernameInput.value.trim() : '';
+      const password = passwordInput ? passwordInput.value : '';
+
+      if (username === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+        // Successful authentication
+        localStorage.setItem(ADMIN_SESSION_KEY, 'true');
+        this.updateAdminAuthUI();
+        this.closeModal('admin-login-modal');
+        this.showToast('Welcome back, Administrator! Access granted.', 'success');
+
+        // Switch to admin view directly
+        this.proceedToAdminRole();
+      } else {
+        // Failed login
+        if (errorAlert) errorAlert.classList.remove('hidden');
+        if (modalDialog) {
+          modalDialog.classList.remove('shake');
+          void modalDialog.offsetWidth; // trigger reflow
+          modalDialog.classList.add('shake');
+        }
+        if (passwordInput) {
+          passwordInput.value = '';
+          passwordInput.focus();
+        }
+      }
+    },
+
+    adminLogout() {
+      localStorage.removeItem(ADMIN_SESSION_KEY);
+      this.updateAdminAuthUI();
+      this.switchRole('customer');
+      this.showToast('Administrator session ended successfully.', 'info');
+    },
+
+    // -----------------------------------------------------------------
+    // Storage Management
+    // -----------------------------------------------------------------
+    loadStorage() {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY);
+        if (stored) {
+          state.complaints = JSON.parse(stored);
+        } else {
+          // Initialize with sample banking complaints
+          state.complaints = JSON.parse(JSON.stringify(SAMPLE_COMPLAINTS));
+          this.saveStorage();
+        }
+      } catch (err) {
+        console.error('Failed to parse localStorage data:', err);
+        state.complaints = JSON.parse(JSON.stringify(SAMPLE_COMPLAINTS));
+      }
+      this.updateBadgeCount();
+    },
+
+    saveStorage() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state.complaints));
+      } catch (err) {
+        console.error('Failed to save to localStorage:', err);
+        this.showToast('Failed to save data. LocalStorage quota exceeded or disabled.', 'danger');
+      }
+      this.updateBadgeCount();
+    },
+
+    resetSampleDataPrompt() {
+      if (confirm('Are you sure you want to restore the default sample complaints? This will reset all tickets to the initial demo state.')) {
+        state.complaints = JSON.parse(JSON.stringify(SAMPLE_COMPLAINTS));
+        this.saveStorage();
+        this.updateAdminKPIs();
+        this.filterComplaints();
+        this.renderQuickSampleTags();
+        this.showToast('Sample banking complaints restored successfully!', 'success');
+      }
+    },
+
+    quickSeedNotification() {
+      const count = state.complaints.length;
+      alert(`LocalStorage Status: Active\nStorage Key: "${STORAGE_KEY}"\nStored Complaints: ${count} records\nData persists across page refreshes and browser tabs.`);
+    },
+
+    updateBadgeCount() {
+      const badge = document.getElementById('admin-badge-count');
+      if (badge) {
+        const pendingCount = state.complaints.filter(c => c.status === 'Pending').length;
+        badge.textContent = pendingCount;
+        badge.title = `${pendingCount} pending complaint(s)`;
+      }
+    },
+
+    // -----------------------------------------------------------------
+    // Role & Tab Switching
+    // -----------------------------------------------------------------
+    switchRole(role) {
+      if (role === 'admin') {
+        if (!this.isAdminAuthenticated()) {
+          this.openAdminLoginModal();
+          return;
+        }
+        this.proceedToAdminRole();
+      } else {
+        this.proceedToCustomerRole();
+      }
+    },
+
+    proceedToAdminRole() {
+      state.currentRole = 'admin';
+
+      const custView = document.getElementById('customer-view');
+      const adminView = document.getElementById('admin-view');
+      const custBtn = document.getElementById('role-customer-btn');
+      const adminBtn = document.getElementById('role-admin-btn');
+
+      if (custView) custView.classList.remove('active');
+      if (adminView) adminView.classList.add('active');
+      if (custBtn) {
+        custBtn.classList.remove('active');
+        custBtn.setAttribute('aria-selected', 'false');
+      }
+      if (adminBtn) {
+        adminBtn.classList.add('active');
+        adminBtn.setAttribute('aria-selected', 'true');
+      }
+
+      // Refresh admin dashboard stats and table
+      this.updateAdminKPIs();
+      this.filterComplaints();
+    },
+
+    proceedToCustomerRole() {
+      state.currentRole = 'customer';
+
+      const custView = document.getElementById('customer-view');
+      const adminView = document.getElementById('admin-view');
+      const custBtn = document.getElementById('role-customer-btn');
+      const adminBtn = document.getElementById('role-admin-btn');
+
+      if (adminView) adminView.classList.remove('active');
+      if (custView) custView.classList.add('active');
+      if (adminBtn) {
+        adminBtn.classList.remove('active');
+        adminBtn.setAttribute('aria-selected', 'false');
+      }
+      if (custBtn) {
+        custBtn.classList.add('active');
+        custBtn.setAttribute('aria-selected', 'true');
+      }
+
+      this.renderQuickSampleTags();
+    },
+
+    switchCustomerTab(tabName) {
+      state.currentCustomerTab = tabName;
+
+      const submitPane = document.getElementById('customer-submit-pane');
+      const trackPane = document.getElementById('customer-track-pane');
+      const submitBtn = document.getElementById('tab-submit-btn');
+      const trackBtn = document.getElementById('tab-track-btn');
+
+      if (tabName === 'track') {
+        if (submitPane) submitPane.classList.remove('active');
+        if (trackPane) trackPane.classList.add('active');
+        if (submitBtn) submitBtn.classList.remove('active');
+        if (trackBtn) trackBtn.classList.add('active');
+
+        // Focus search input
+        setTimeout(() => {
+          const inp = document.getElementById('track-search-input');
+          if (inp) inp.focus();
+        }, 100);
+      } else {
+        if (trackPane) trackPane.classList.remove('active');
+        if (submitPane) submitPane.classList.add('active');
+        if (trackBtn) trackBtn.classList.remove('active');
+        if (submitBtn) submitBtn.classList.add('active');
+      }
+    },
+
+    // -----------------------------------------------------------------
+    // Star Rating Component
+    // -----------------------------------------------------------------
+    setRating(val) {
+      state.selectedRating = val;
+      const ratingInput = document.getElementById('cust-rating');
+      if (ratingInput) ratingInput.value = val;
+
+      const ratingLabel = document.getElementById('rating-label');
+      if (ratingLabel) {
+        ratingLabel.textContent = RATING_DESCRIPTIONS[val] || '';
+        ratingLabel.style.color = '#f59e0b';
+      }
+
+      const buttons = document.querySelectorAll('#star-rating-container .star-btn');
+      buttons.forEach((btn, index) => {
+        if (index < val) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // Clear rating error if shown
+      this.clearFieldError('err-rating');
+    },
+
+    updateCharCount(textarea) {
+      const counter = document.getElementById('char-counter');
+      if (counter) {
+        counter.textContent = `${textarea.value.length} / 1000 characters`;
+      }
+    },
+
+    // -----------------------------------------------------------------
+    // Form Validation & Submission
+    // -----------------------------------------------------------------
+    generateComplaintId() {
+      const existing = new Set(state.complaints.map(c => c.id));
+      let newId = '';
+      let attempts = 0;
+
+      while (attempts < 200) {
+        const rand = Math.floor(10000 + Math.random() * 90000);
+        newId = `CMP-${rand}`;
+        if (!existing.has(newId)) break;
+        attempts++;
+      }
+      return newId;
+    },
+
+    validateForm() {
+      let isValid = true;
+
+      // Full Name
+      const name = document.getElementById('cust-fullname');
+      if (!name || !name.value.trim()) {
+        this.showFieldError('err-fullname', name, 'Please enter your full name.');
+        isValid = false;
+      } else {
+        this.clearFieldError('err-fullname', name);
+      }
+
+      // Email
+      const email = document.getElementById('cust-email');
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !email.value.trim()) {
+        this.showFieldError('err-email', email, 'Please enter your email address.');
+        isValid = false;
+      } else if (!emailRegex.test(email.value.trim())) {
+        this.showFieldError('err-email', email, 'Please enter a valid email format.');
+        isValid = false;
+      } else {
+        this.clearFieldError('err-email', email);
+      }
+
+      // Category
+      const cat = document.getElementById('cust-category');
+      if (!cat || !cat.value) {
+        this.showFieldError('err-category', cat, 'Please select a complaint category.');
+        isValid = false;
+      } else {
+        this.clearFieldError('err-category', cat);
+      }
+
+      // Rating
+      if (!state.selectedRating || state.selectedRating < 1) {
+        this.showFieldError('err-rating', null, 'Please select a star rating (1 to 5).');
+        isValid = false;
+      } else {
+        this.clearFieldError('err-rating');
+      }
+
+      // Subject
+      const subject = document.getElementById('cust-subject');
+      if (!subject || !subject.value.trim()) {
+        this.showFieldError('err-subject', subject, 'Please enter a subject summary.');
+        isValid = false;
+      } else {
+        this.clearFieldError('err-subject', subject);
+      }
+
+      // Details
+      const details = document.getElementById('cust-details');
+      if (!details || !details.value.trim()) {
+        this.showFieldError('err-details', details, 'Please describe your complaint or feedback details.');
+        isValid = false;
+      } else if (details.value.trim().length < 10) {
+        this.showFieldError('err-details', details, 'Please provide more details (minimum 10 characters).');
+        isValid = false;
+      } else {
+        this.clearFieldError('err-details', details);
+      }
+
+      return isValid;
+    },
+
+    showFieldError(elementId, inputElem, message) {
+      const err = document.getElementById(elementId);
+      if (err) {
+        err.textContent = message;
+        err.style.display = 'block';
+      }
+      if (inputElem) {
+        inputElem.closest('.form-group')?.classList.add('has-error');
+      }
+    },
+
+    clearFieldError(elementId, inputElem) {
+      const err = document.getElementById(elementId);
+      if (err) {
+        err.textContent = '';
+        err.style.display = 'none';
+      }
+      if (inputElem) {
+        inputElem.closest('.form-group')?.classList.remove('has-error');
+      }
+    },
+
+    handleComplaintSubmit(e) {
+      e.preventDefault();
+
+      if (!this.validateForm()) {
+        this.showToast('Please correct the highlighted fields before submitting.', 'warning');
+        return;
+      }
+
+      const form = document.getElementById('complaint-form');
+      const formData = new FormData(form);
+
+      const newId = this.generateComplaintId();
+      const newComplaint = {
+        id: newId,
+        fullName: formData.get('fullname').trim(),
+        email: formData.get('email').trim(),
+        category: formData.get('category'),
+        subject: formData.get('subject').trim(),
+        details: formData.get('details').trim(),
+        rating: parseInt(state.selectedRating, 10),
+        status: 'Pending',
+        adminNote: '',
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+      };
+
+      // Prepend to complaints list
+      state.complaints.unshift(newComplaint);
+      this.saveStorage();
+      state.lastSubmittedId = newId;
+
+      // Show Confirmation Modal
+      const modalIdElem = document.getElementById('modal-ticket-id');
+      if (modalIdElem) modalIdElem.textContent = newId;
+      this.openModal('success-modal');
+
+      // Reset form
+      this.resetForm();
+      this.renderQuickSampleTags();
+      this.updateAdminKPIs();
+      this.showToast(`Complaint ${newId} submitted successfully!`, 'success');
+    },
+
+    resetForm() {
+      const form = document.getElementById('complaint-form');
+      if (form) form.reset();
+      this.setRating(0);
+      const ratingLabel = document.getElementById('rating-label');
+      if (ratingLabel) {
+        ratingLabel.textContent = 'Select a rating';
+        ratingLabel.style.color = '';
+      }
+      const counter = document.getElementById('char-counter');
+      if (counter) counter.textContent = '0 / 1000 characters';
+
+      // Clear any errors
+      document.querySelectorAll('.form-group').forEach(fg => fg.classList.remove('has-error'));
+      document.querySelectorAll('.field-error').forEach(fe => {
+        fe.textContent = '';
+        fe.style.display = 'none';
+      });
+    },
+
+    directToTrackModal() {
+      this.closeModal('success-modal');
+      this.switchCustomerTab('track');
+      if (state.lastSubmittedId) {
+        const inp = document.getElementById('track-search-input');
+        if (inp) {
+          inp.value = state.lastSubmittedId;
+          this.trackComplaint();
+        }
+      }
+    },
+
+    // -----------------------------------------------------------------
+    // Customer Status Tracking
+    // -----------------------------------------------------------------
+    trackComplaint(idToSearch) {
+      const input = document.getElementById('track-search-input');
+      const query = (idToSearch || (input ? input.value : '')).trim().toUpperCase();
+      const resultArea = document.getElementById('tracking-result-area');
+
+      if (!query) {
+        this.showToast('Please enter a valid Complaint ID.', 'warning');
+        return;
+      }
+
+      if (input) input.value = query;
+
+      const found = state.complaints.find(c => c.id.toUpperCase() === query);
+
+      resultArea.classList.remove('hidden');
+
+      if (!found) {
+        resultArea.innerHTML = `
+          <div class="not-found-card">
+            <i class="fa-solid fa-magnifying-glass-chart not-found-icon"></i>
+            <h4>No Record Found for "${this.escapeHtml(query)}"</h4>
+            <p>Please double-check your Complaint Tracking ID. IDs are formatted like <code>CMP-10492</code>.</p>
+          </div>
+        `;
+        return;
+      }
+
+      // Compute Timeline states
+      let step1Class = 'completed';
+      let step2Class = '';
+      let step3Class = '';
+      let progressWidth = '0%';
+
+      if (found.status === 'Pending') {
+        step1Class = 'active';
+        progressWidth = '15%';
+      } else if (found.status === 'In Progress') {
+        step1Class = 'completed';
+        step2Class = 'active';
+        progressWidth = '50%';
+      } else if (found.status === 'Resolved') {
+        step1Class = 'completed';
+        step2Class = 'completed';
+        step3Class = 'completed active';
+        progressWidth = '100%';
+      }
+
+      const createdFormatted = this.formatDate(found.createdAt);
+      const updatedFormatted = this.formatDate(found.updatedAt);
+      const statusBadge = this.generateStatusBadgeHtml(found.status);
+      const starsHtml = this.generateStarsHtml(found.rating);
+
+      let adminNoteHtml = '';
+      if (found.adminNote && found.adminNote.trim()) {
+        adminNoteHtml = `
+          <div class="admin-notes-callout resolved-note">
+            <div class="admin-notes-header">
+              <span class="admin-notes-title">
+                <i class="fa-solid fa-user-shield"></i> Official Admin Resolution Note
+              </span>
+              <span class="admin-notes-date">Updated: ${updatedFormatted}</span>
+            </div>
+            <div class="admin-notes-body">
+              ${this.escapeHtml(found.adminNote)}
+            </div>
+          </div>
+        `;
+      } else if (found.status === 'In Progress') {
+        adminNoteHtml = `
+          <div class="admin-notes-callout progress-note">
+            <div class="admin-notes-header">
+              <span class="admin-notes-title">
+                <i class="fa-solid fa-screwdriver-wrench"></i> Active Investigation in Progress
+              </span>
+            </div>
+            <div class="admin-notes-body">
+              Our specialized support and operations team is currently handling your case. Specific resolution notes will be posted as soon as the review concludes.
+            </div>
+          </div>
+        `;
+      } else {
+        adminNoteHtml = `
+          <div class="admin-notes-callout pending-note">
+            <div class="admin-notes-header">
+              <span class="admin-notes-title">
+                <i class="fa-solid fa-hourglass-half"></i> Case Queued for Review
+              </span>
+            </div>
+            <div class="admin-notes-body">
+              An administrative case officer has been notified. Official notes and action updates will appear here once investigation begins.
+            </div>
+          </div>
+        `;
+      }
+
+      resultArea.innerHTML = `
+        <div class="track-card-header">
+          <div class="track-ticket-header">
+            <h4>${found.id}</h4>
+            <div class="track-meta">
+              <span>Submitted on ${createdFormatted}</span>
+              <span> • </span>
+              <span>Category: <strong>${this.escapeHtml(found.category)}</strong></span>
+            </div>
+          </div>
+          <div>${statusBadge}</div>
+        </div>
+
+        <!-- Progress Timeline -->
+        <div class="resolution-timeline">
+          <div class="timeline-progress-bar" style="width: ${progressWidth};"></div>
+          
+          <div class="timeline-step ${step1Class}">
+            <div class="timeline-dot"><i class="fa-solid fa-file-check"></i></div>
+            <span class="timeline-label">Submitted</span>
+            <span class="timeline-date">${createdFormatted}</span>
+          </div>
+
+          <div class="timeline-step ${step2Class}">
+            <div class="timeline-dot"><i class="fa-solid fa-magnifying-glass-arrow-right"></i></div>
+            <span class="timeline-label">In Review</span>
+            <span class="timeline-date">${found.status !== 'Pending' ? updatedFormatted : 'Pending'}</span>
+          </div>
+
+          <div class="timeline-step ${step3Class}">
+            <div class="timeline-dot"><i class="fa-solid fa-circle-check"></i></div>
+            <span class="timeline-label">Resolved</span>
+            <span class="timeline-date">${found.status === 'Resolved' ? updatedFormatted : 'Pending'}</span>
+          </div>
+        </div>
+
+        <!-- Details Grid -->
+        <div class="track-detail-grid">
+          <div>
+            <div class="track-field-label">Customer Name</div>
+            <div class="track-field-val">${this.escapeHtml(found.fullName)}</div>
+          </div>
+          <div>
+            <div class="track-field-label">Contact Email</div>
+            <div class="track-field-val">${this.escapeHtml(found.email)}</div>
+          </div>
+          <div>
+            <div class="track-field-label">Experience Rating</div>
+            <div class="track-field-val">${starsHtml} (${found.rating}/5)</div>
+          </div>
+          <div>
+            <div class="track-field-label">Current Status</div>
+            <div class="track-field-val">${this.escapeHtml(found.status)}</div>
+          </div>
+        </div>
+
+        <!-- Narrative Box -->
+        <div class="track-narrative">
+          <h5><i class="fa-solid fa-quote-left" style="color: #94a3b8; margin-right: 6px;"></i> ${this.escapeHtml(found.subject)}</h5>
+          <p>${this.escapeHtml(found.details)}</p>
+        </div>
+
+        <!-- Admin Resolution Callout -->
+        ${adminNoteHtml}
+      `;
+    },
+
+    renderQuickSampleTags() {
+      const container = document.getElementById('quick-sample-tags');
+      if (!container) return;
+
+      const samples = state.complaints.slice(0, 4);
+      if (samples.length === 0) {
+        container.innerHTML = '<span style="color:#94a3b8; font-size:0.8rem;">No active tickets</span>';
+        return;
+      }
+
+      container.innerHTML = samples.map(c => `
+        <button type="button" class="sample-pill" onclick="app.quickTrack('${c.id}')">
+          ${c.id} (${c.status})
+        </button>
+      `).join('');
+    },
+
+    quickTrack(id) {
+      const input = document.getElementById('track-search-input');
+      if (input) input.value = id;
+      this.trackComplaint(id);
+    },
+
+    // -----------------------------------------------------------------
+    // Admin Dashboard: Analytics & Filtering
+    // -----------------------------------------------------------------
+    updateAdminKPIs() {
+      const total = state.complaints.length;
+      const pending = state.complaints.filter(c => c.status === 'Pending').length;
+      const progress = state.complaints.filter(c => c.status === 'In Progress').length;
+      const resolved = state.complaints.filter(c => c.status === 'Resolved').length;
+
+      let avgRating = 0;
+      if (total > 0) {
+        const sum = state.complaints.reduce((acc, c) => acc + (c.rating || 0), 0);
+        avgRating = (sum / total).toFixed(1);
+      }
+
+      // Update DOM
+      const kpiTotal = document.getElementById('kpi-total');
+      const kpiPending = document.getElementById('kpi-pending');
+      const kpiProgress = document.getElementById('kpi-progress');
+      const kpiResolved = document.getElementById('kpi-resolved');
+      const kpiRating = document.getElementById('kpi-rating');
+      const kpiStars = document.getElementById('kpi-stars');
+
+      if (kpiTotal) kpiTotal.textContent = total;
+      if (kpiPending) kpiPending.textContent = pending;
+      if (kpiProgress) kpiProgress.textContent = progress;
+      if (kpiResolved) kpiResolved.textContent = resolved;
+      if (kpiRating) kpiRating.innerHTML = `${avgRating} <small>/ 5</small>`;
+      if (kpiStars) kpiStars.innerHTML = this.generateStarsHtml(Math.round(avgRating));
+
+      this.updateBadgeCount();
+    },
+
+    filterComplaints() {
+      const searchInput = document.getElementById('admin-search-input');
+      const statusSelect = document.getElementById('admin-filter-status');
+      const categorySelect = document.getElementById('admin-filter-category');
+      const sortSelect = document.getElementById('admin-sort-by');
+
+      const searchQuery = (searchInput ? searchInput.value : '').trim().toLowerCase();
+      const statusFilter = statusSelect ? statusSelect.value : 'All';
+      const categoryFilter = categorySelect ? categorySelect.value : 'All';
+      const sortBy = sortSelect ? sortSelect.value : 'newest';
+
+      let results = state.complaints.filter(item => {
+        // Status filter
+        if (statusFilter !== 'All' && item.status !== statusFilter) {
+          return false;
+        }
+        // Category filter
+        if (categoryFilter !== 'All' && item.category !== categoryFilter) {
+          return false;
+        }
+        // Search filter (ID, Customer Name, Email, Subject)
+        if (searchQuery) {
+          const matchId = item.id.toLowerCase().includes(searchQuery);
+          const matchName = item.fullName.toLowerCase().includes(searchQuery);
+          const matchEmail = item.email.toLowerCase().includes(searchQuery);
+          const matchSubject = item.subject.toLowerCase().includes(searchQuery);
+          if (!matchId && !matchName && !matchEmail && !matchSubject) {
+            return false;
+          }
+        }
+        return true;
+      });
+
+      // Sorting
+      results.sort((a, b) => {
+        if (sortBy === 'newest') {
+          return new Date(b.createdAt) - new Date(a.createdAt);
+        } else if (sortBy === 'oldest') {
+          return new Date(a.createdAt) - new Date(b.createdAt);
+        } else if (sortBy === 'rating-high') {
+          return b.rating - a.rating;
+        } else if (sortBy === 'rating-low') {
+          return a.rating - b.rating;
+        }
+        return 0;
+      });
+
+      this.renderAdminTable(results);
+    },
+
+    renderAdminTable(items) {
+      const tbody = document.getElementById('admin-table-body');
+      const countLabel = document.getElementById('table-results-count');
+
+      if (countLabel) {
+        countLabel.textContent = `Showing ${items.length} of ${state.complaints.length} complaint${state.complaints.length === 1 ? '' : 's'}`;
+      }
+
+      if (!tbody) return;
+
+      if (items.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="8">
+              <div class="empty-table-state">
+                <i class="fa-solid fa-folder-open"></i>
+                <h4>No Matching Complaints</h4>
+                <p>Try modifying your search criteria or resetting filters.</p>
+              </div>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = items.map(c => `
+        <tr>
+          <td><span class="id-badge">${c.id}</span></td>
+          <td class="customer-cell">
+            <strong>${this.escapeHtml(c.fullName)}</strong>
+            <small>${this.escapeHtml(c.email)}</small>
+          </td>
+          <td><span class="category-tag">${this.escapeHtml(c.category)}</span></td>
+          <td class="table-subject-cell" title="${this.escapeHtml(c.subject)}">
+            ${this.escapeHtml(c.subject)}
+          </td>
+          <td style="white-space: nowrap; font-size: 0.82rem; color: #64748b;">
+            ${this.formatShortDate(c.createdAt)}
+          </td>
+          <td>
+            <span class="table-rating-stars">${this.generateStarsHtml(c.rating)}</span>
+          </td>
+          <td>
+            ${this.generateStatusBadgeHtml(c.status)}
+          </td>
+          <td class="text-right">
+            <div class="table-actions">
+              <button class="btn btn-outline btn-sm" onclick="app.openAdminDetailModal('${c.id}')" title="Inspect & Update Status">
+                <i class="fa-solid fa-pen-to-square"></i> Manage
+              </button>
+              <button class="btn btn-danger-outline btn-sm" onclick="app.openDeleteConfirmModal('${c.id}')" title="Delete Complaint">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    },
+
+    // -----------------------------------------------------------------
+    // Admin Detail & Status Update Modal
+    // -----------------------------------------------------------------
+    openAdminDetailModal(complaintId) {
+      const complaint = state.complaints.find(c => c.id === complaintId);
+      if (!complaint) {
+        this.showToast(`Complaint ${complaintId} not found.`, 'danger');
+        return;
+      }
+
+      // Populate Modal Fields
+      document.getElementById('admin-edit-id').value = complaint.id;
+      document.getElementById('admin-modal-id').textContent = complaint.id;
+      document.getElementById('admin-modal-name').textContent = complaint.fullName;
+      document.getElementById('admin-modal-email').textContent = complaint.email;
+      document.getElementById('admin-modal-category').textContent = complaint.category;
+      document.getElementById('admin-modal-date').textContent = this.formatDate(complaint.createdAt);
+      document.getElementById('admin-modal-rating').innerHTML = `${this.generateStarsHtml(complaint.rating)} (${complaint.rating}/5)`;
+      document.getElementById('admin-modal-current-badge').innerHTML = this.generateStatusBadgeHtml(complaint.status);
+      document.getElementById('admin-modal-subject').textContent = complaint.subject;
+      document.getElementById('admin-modal-details').textContent = complaint.details;
+
+      // Status Radio
+      const radPending = document.getElementById('status-rad-pending');
+      const radProgress = document.getElementById('status-rad-progress');
+      const radResolved = document.getElementById('status-rad-resolved');
+
+      if (complaint.status === 'Pending') radPending.checked = true;
+      else if (complaint.status === 'In Progress') radProgress.checked = true;
+      else if (complaint.status === 'Resolved') radResolved.checked = true;
+
+      // Note
+      const noteInput = document.getElementById('admin-resolution-note');
+      if (noteInput) noteInput.value = complaint.adminNote || '';
+
+      this.openModal('admin-detail-modal');
+    },
+
+    handleAdminUpdate(e) {
+      e.preventDefault();
+
+      const editId = document.getElementById('admin-edit-id').value;
+      const complaint = state.complaints.find(c => c.id === editId);
+
+      if (!complaint) {
+        this.showToast('Unable to find complaint record.', 'danger');
+        return;
+      }
+
+      // Read selected status
+      const selectedStatusRadio = document.querySelector('input[name="admin-status"]:checked');
+      if (!selectedStatusRadio) {
+        this.showToast('Please select a valid status.', 'warning');
+        return;
+      }
+
+      const newStatus = selectedStatusRadio.value;
+      const newNote = document.getElementById('admin-resolution-note').value.trim();
+
+      // Update record
+      complaint.status = newStatus;
+      complaint.adminNote = newNote;
+      complaint.updatedAt = new Date().toISOString();
+
+      this.saveStorage();
+      this.closeModal('admin-detail-modal');
+
+      // Refresh Dashboard components
+      this.updateAdminKPIs();
+      this.filterComplaints();
+      this.renderQuickSampleTags();
+
+      // If customer tracking is currently showing this ID, refresh it
+      const trackInput = document.getElementById('track-search-input');
+      if (trackInput && trackInput.value.trim().toUpperCase() === editId) {
+        this.trackComplaint(editId);
+      }
+
+      this.showToast(`Updated ${editId} to "${newStatus}"!`, 'success');
+    },
+
+    // -----------------------------------------------------------------
+    // Ticket Deletion Feature
+    // -----------------------------------------------------------------
+    openDeleteConfirmModal(complaintId) {
+      state.pendingDeleteId = complaintId;
+      const targetElem = document.getElementById('delete-target-id');
+      if (targetElem) targetElem.textContent = complaintId;
+      this.openModal('delete-confirm-modal');
+    },
+
+    executeDeleteTicket() {
+      const id = state.pendingDeleteId;
+      if (!id) return;
+
+      const initialLength = state.complaints.length;
+      state.complaints = state.complaints.filter(c => c.id !== id);
+
+      if (state.complaints.length < initialLength) {
+        this.saveStorage();
+        this.closeModal('delete-confirm-modal');
+        state.pendingDeleteId = null;
+
+        // Refresh components
+        this.updateAdminKPIs();
+        this.filterComplaints();
+        this.renderQuickSampleTags();
+
+        // If currently displayed in tracking area, clear it
+        const trackInput = document.getElementById('track-search-input');
+        if (trackInput && trackInput.value.trim().toUpperCase() === id) {
+          const resultArea = document.getElementById('tracking-result-area');
+          if (resultArea) resultArea.classList.add('hidden');
+        }
+
+        this.showToast(`Ticket ${id} has been permanently deleted.`, 'warning');
+      } else {
+        this.showToast(`Ticket ${id} could not be found.`, 'danger');
+        this.closeModal('delete-confirm-modal');
+      }
+    },
+
+    // -----------------------------------------------------------------
+    // JSON & CSV Export Features
+    // -----------------------------------------------------------------
+    exportToJSON() {
+      if (state.complaints.length === 0) {
+        this.showToast('No complaint records available to export.', 'warning');
+        return;
+      }
+
+      const jsonStr = JSON.stringify(state.complaints, null, 2);
+      const blob = new Blob([jsonStr], { type: 'application/json;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', `complaints_export_${new Date().toISOString().slice(0, 10)}.json`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      this.showToast('Complaints successfully exported to JSON!', 'success');
+    },
+
+    exportToCSV() {
+      if (state.complaints.length === 0) {
+        this.showToast('No complaint records available to export.', 'warning');
+        return;
+      }
+
+      const headers = ['ID', 'Full Name', 'Email', 'Category', 'Subject', 'Rating', 'Status', 'Submitted Date', 'Admin Notes'];
+      const rows = state.complaints.map(c => [
+        `"${c.id}"`,
+        `"${(c.fullName || '').replace(/"/g, '""')}"`,
+        `"${(c.email || '').replace(/"/g, '""')}"`,
+        `"${(c.category || '').replace(/"/g, '""')}"`,
+        `"${(c.subject || '').replace(/"/g, '""')}"`,
+        c.rating,
+        `"${c.status}"`,
+        `"${c.createdAt}"`,
+        `"${(c.adminNote || '').replace(/"/g, '""')}"`
+      ]);
+
+      const csvContent = [headers.join(','), ...rows.map(r => r.join(','))].join('\r\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', `complaints_export_${new Date().toISOString().slice(0, 10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      this.showToast('Complaints successfully exported to CSV!', 'success');
+    },
+
+    // -----------------------------------------------------------------
+    // Modal Helpers
+    // -----------------------------------------------------------------
+    openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    },
+
+    closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    },
+
+    closeModalOutside(event, modalId) {
+      if (event.target.id === modalId) {
+        this.closeModal(modalId);
+      }
+    },
+
+    copyToClipboard(targetSelector, btnElem) {
+      const target = document.querySelector(targetSelector);
+      if (!target) return;
+
+      const text = target.textContent.trim();
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btnElem.innerHTML;
+        btnElem.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+        btnElem.style.color = '#059669';
+        setTimeout(() => {
+          btnElem.innerHTML = originalText;
+          btnElem.style.color = '';
+        }, 2000);
+        this.showToast(`Complaint ID ${text} copied to clipboard!`, 'info');
+      }).catch(err => {
+        console.error('Copy failed: ', err);
+      });
+    },
+
+    // -----------------------------------------------------------------
+    // Toast Notification System
+    // -----------------------------------------------------------------
+    showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className = `toast toast-${type}`;
+
+      let icon = 'fa-circle-info';
+      if (type === 'success') icon = 'fa-circle-check';
+      else if (type === 'warning') icon = 'fa-triangle-exclamation';
+      else if (type === 'danger') icon = 'fa-circle-xmark';
+
+      toast.innerHTML = `
+        <i class="fa-solid ${icon}"></i>
+        <span>${message}</span>
+      `;
+
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.add('toast-closing');
+        setTimeout(() => {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 250);
+      }, 3500);
+    },
+
+    // -----------------------------------------------------------------
+    // HTML Utility Helpers
+    // -----------------------------------------------------------------
+    generateStatusBadgeHtml(status) {
+      if (status === 'Pending') {
+        return '<span class="badge badge-pending"><i class="fa-solid fa-clock"></i> Pending</span>';
+      } else if (status === 'In Progress') {
+        return '<span class="badge badge-progress"><i class="fa-solid fa-arrows-rotate"></i> In Progress</span>';
+      } else if (status === 'Resolved') {
+        return '<span class="badge badge-resolved"><i class="fa-solid fa-circle-check"></i> Resolved</span>';
+      }
+      return `<span class="badge">${this.escapeHtml(status)}</span>`;
+    },
+
+    generateStarsHtml(rating) {
+      let stars = '';
+      const r = Math.max(0, Math.min(5, Math.round(rating || 0)));
+      for (let i = 1; i <= 5; i++) {
+        if (i <= r) {
+          stars += '<i class="fa-solid fa-star"></i>';
+        } else {
+          stars += '<i class="fa-regular fa-star" style="color:#cbd5e1;"></i>';
+        }
+      }
+      return stars;
+    },
+
+    formatDate(isoStr) {
+      if (!isoStr) return '-';
+      try {
+        const d = new Date(isoStr);
+        return d.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+      } catch (e) {
+        return isoStr;
+      }
+    },
+
+    formatShortDate(isoStr) {
+      if (!isoStr) return '-';
+      try {
+        const d = new Date(isoStr);
+        return d.toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric'
+        });
+      } catch (e) {
+        return isoStr;
+      }
+    },
+
+    escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    },
+
+    setupEventListeners() {
+      // ESC key closes modals
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          this.closeModal('success-modal');
+          this.closeModal('admin-detail-modal');
+          this.closeModal('admin-login-modal');
+          this.closeModal('delete-confirm-modal');
+        }
+      });
+
+      // Hover feedback for rating buttons
+      const ratingContainer = document.getElementById('star-rating-container');
+      if (ratingContainer) {
+        const btns = ratingContainer.querySelectorAll('.star-btn');
+        btns.forEach((btn, idx) => {
+          btn.addEventListener('mouseenter', () => {
+            btns.forEach((b, i) => {
+              if (i <= idx) b.classList.add('hovered');
+              else b.classList.remove('hovered');
+            });
+            const ratingLabel = document.getElementById('rating-label');
+            if (ratingLabel) ratingLabel.textContent = RATING_DESCRIPTIONS[idx + 1];
+          });
+        });
+
+        ratingContainer.addEventListener('mouseleave', () => {
+          btns.forEach(b => b.classList.remove('hovered'));
+          const ratingLabel = document.getElementById('rating-label');
+          if (ratingLabel) {
+            ratingLabel.textContent = RATING_DESCRIPTIONS[state.selectedRating] || 'Select a rating';
+          }
+        });
+      }
+    }
+  };
+
+  // Bootstrap when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    window.app.init();
+  });
+
+})();
+
+  </script>
+</body>
+</html>
